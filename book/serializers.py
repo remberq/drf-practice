@@ -1,9 +1,15 @@
 from rest_framework.serializers import ModelSerializer
 
-from book.models import Book
+from book.models import Book, UserBookRelation
 
 
 class BookSerializer(ModelSerializer):
     class Meta:
         model = Book
-        fields = '__all__'
+        exclude = ['readers']
+
+
+class UserBookRelationSerializer(ModelSerializer):
+    class Meta:
+        model = UserBookRelation
+        fields = ('book', 'like', 'rate', 'in_bookmarks')

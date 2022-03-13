@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'book.apps.BookConfig',
     'rest_framework',
     'django_extensions',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'drf_practice.urls'
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 TEMPLATES = [
     {
@@ -132,8 +138,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
+        # 'rest_framework.renderers.BrowsableAPIRenderer'
     ),
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
     )
 }
+
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
+
+SOCIAL_AUTH_GITHUB_KEY = '5651faabdedee94b175b'
+SOCIAL_AUTH_GITHUB_SECRET = 'd57bd8d8e2fd0a4ebf4f0bcfd11e3057a328743b'
