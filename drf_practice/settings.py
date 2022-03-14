@@ -36,10 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'book.apps.BookConfig',
+    "debug_toolbar",
     'rest_framework',
     'django_extensions',
     'social_django',
+
+    'book.apps.BookConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -50,9 +53,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'debug_toolbar_force.middleware.ForceDebugToolbarMiddleware'
 ]
 
 ROOT_URLCONF = 'drf_practice.urls'
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
